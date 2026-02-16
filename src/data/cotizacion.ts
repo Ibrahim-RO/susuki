@@ -1,4 +1,6 @@
-const autos = [
+import { Auto } from "../types";
+
+const autos : Auto[] = [
     {
         id: "suzuki-swift-2024",
         marca: "Suzuki",

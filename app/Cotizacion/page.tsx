@@ -8,12 +8,13 @@ import { Field, FieldLabel } from "@/components/ui/field"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Auto } from '@/src/types'
 
 export default function Cotizacion() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-    const [selectedAuto, setSelectedAuto] = useState(null)
+    const [selectedAuto, setSelectedAuto] = useState<Auto | null>()
 
-    const handleAutoClick = (auto) => {
+    const handleAutoClick = (auto: Auto) => {
         setSelectedAuto(auto)
         setIsDrawerOpen(true)
     }
@@ -64,7 +65,7 @@ export default function Cotizacion() {
             )}
 
             {/* Drawer */}
-            <div className={`fixed top-0 right-0 h-full w-full md:w-[500px] lg:w-[600px] bg-white dark:bg-neutral-900 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+            <div className={`fixed top-0 right-0 h-full w-full md:w-125 lg:w-150 bg-white dark:bg-neutral-900 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}>
                 <div className='h-full flex flex-col'>
                     {/* Header */}
@@ -198,7 +199,7 @@ export default function Cotizacion() {
                                         </FieldLabel>
                                         <Textarea
                                             placeholder="¿Alguna pregunta o solicitud especial?"
-                                            className="min-h-[100px] resize-none"
+                                            className="min-h-25 resize-none"
                                         />
                                     </Field>
 
