@@ -77,9 +77,9 @@ export default function Header() {
                                         className="flex items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
                                     >
                                         <span>{item.name}</span>
-                                        {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
+                                        {/* {item.hasDropdown && <ChevronDown className="w-4 h-4" />} */}
                                     </Link>
-                                    {
+                                    {/* {
                                         item.hasDropdown && (
                                             <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-zinc-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                                                 <div className="py-2">
@@ -95,7 +95,7 @@ export default function Header() {
                                                 </div>
                                             </div>
                                         )
-                                    }
+                                    } */}
                                 </motion.div>
                             ))}
                             <a href='#' className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Más</a>
