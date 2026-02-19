@@ -36,9 +36,9 @@ export default function Cotizacion() {
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-                {autos.map((auto, index) => (
+                {autos.map((auto) => (
                     <div
-                        key={index}
+                        key={auto.id}
                         onClick={() => handleAutoClick(auto)}
                         className='group border border-neutral-300 dark:border-neutral-700 p-5 text-center space-y-3 rounded-2xl hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 transition-all cursor-pointer duration-300 bg-white dark:bg-neutral-900'
                     >

@@ -4,7 +4,7 @@ export const menuItems = [
   { name: 'Citas de Servicio', href: '/CitasDeServicio' },
   { name: 'Promociones', href: '/Promociones' },
   { name: 'Tecnología', href: '/Tecnologia' },
-  { name: 'Seminuevos', href: '#' },
+  { name: 'Seminuevos', href: '/Seminuevos' },
   { name: 'Contáctanos', href: '/Contactanos' },
 ];
 
