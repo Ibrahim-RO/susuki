@@ -1,7 +1,7 @@
 import { Mail, MapPin, Clock, Send } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea"
-import { Field, FieldDescription, FieldLabel } from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
+import { Textarea } from "@/src/components/ui/textarea"
+import { Field, FieldDescription, FieldLabel } from "@/src/components/ui/field"
+import { Input } from "@/src/components/ui/input"
 import {
     Select,
     SelectContent,
@@ -9,8 +9,8 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
-import { Button } from "@/components/ui/button";
+} from "@/src/components/ui/select"
+import { Button } from "@/src/components/ui/button";
 
 export default function Contactanos() {
     return (

@@ -1,9 +1,6 @@
 export type Auto = {
-    id: string;
-    marca: string;
+    id: number;
     modelo: string;
     imagenPrincipal: string;
-    versiones: {
-        nombre: string;
-    }[]
+    versiones: string[]
 }

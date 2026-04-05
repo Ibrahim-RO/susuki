@@ -3,11 +3,11 @@
 import autos from '@/src/data/cotizacion'
 import React, { useState } from 'react'
 import { X, Car, Mail, Phone, User, MessageSquare } from 'lucide-react'
-import { Input } from "@/components/ui/input"
-import { Field, FieldLabel } from "@/components/ui/field"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Input } from "@/src/components/ui/input"
+import { Field, FieldLabel } from "@/src/components/ui/field"
+import { Textarea } from "@/src/components/ui/textarea"
+import { Button } from "@/src/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/src/components/ui/select'
 import { Auto } from '@/src/types'
 
 export default function Cotizacion() {
@@ -40,16 +40,16 @@ export default function Cotizacion() {
                     <div
                         key={auto.id}
                         onClick={() => handleAutoClick(auto)}
-                        className='group border border-neutral-300 dark:border-neutral-700 p-5 text-center space-y-3 rounded-2xl hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 transition-all cursor-pointer duration-300 bg-white dark:bg-neutral-900'
+                        className="group flex flex-col items-center text-center gap-2"
                     >
-                        <div className='overflow-hidden rounded-lg'>
+                        <div className="w-full aspect-4/3 flex items-center justify-center rounded-xl overflow-hidden  bg-gray-50 dark:bg-zinc-800  group-hover:bg-blue-50 dark:group-hover:bg-blue-950/30 transition-colors duration-200">
                             <img
                                 src={auto.imagenPrincipal}
                                 alt={auto.modelo}
-                                className='w-full h-auto group-hover:scale-110 transition-transform duration-300'
+                                className="w-4/5 h-4/5 object-contain group-hover:scale-105 transition-transform duration-300"
                             />
                         </div>
-                        <p className='font-semibold text-lg group-hover:text-red-500 transition-colors'>
+                        <p className="text-sm font-bold text-gray-800 dark:text-gray-100 leading-snug tracking-wide uppercase group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                             {auto.modelo}
                         </p>
                     </div>
@@ -118,8 +118,8 @@ export default function Cotizacion() {
                                                 <SelectValue placeholder="Selecciona una opción" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                {selectedAuto.versiones.map(item => (
-                                                    <SelectItem value={item.nombre}>{item.nombre}</SelectItem>
+                                                {selectedAuto.versiones.map((item, idx) => (
+                                                    <SelectItem key={idx} value={item}>{item}</SelectItem>
                                                 ))}
                                             </SelectContent>
                                         </Select>

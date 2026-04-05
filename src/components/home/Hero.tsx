@@ -58,84 +58,85 @@ export default function AutoDealershipHome() {
     const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + vehicles.length) % vehicles.length)
 
     return (
-        <div className="h-dvh bg-linear-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 text-gray-900 dark:text-white transition-colors duration-300">
-            {/* Hero Carousel Section */}
-            <section className="relative h-screen overflow-hidden">
-                {/* Background Images */}
-                {vehicles.map((vehicle, index) => (
-                    <div
-                        key={index}
-                        className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
-                            }`}
-                    >
-                        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-transparent dark:from-black/90 dark:via-black/70 dark:to-transparent z-10" />
-                        <img
-                            src={vehicle.image}
-                            alt={vehicle.name}
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                ))}
+        <>
+            <div className="h-dvh bg-linear-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 text-gray-900 dark:text-white transition-colors duration-300">
+                {/* Hero Carousel Section */}
+                <section className="relative h-screen overflow-hidden">
+                    {/* Background Images */}
+                    {vehicles.map((vehicle, index) => (
+                        <div
+                            key={index}
+                            className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+                                }`}
+                        >
+                            <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-transparent dark:from-black/90 dark:via-black/70 dark:to-transparent z-10" />
+                            <img
+                                src={vehicle.image}
+                                alt={vehicle.name}
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    ))}
 
-                {/* Content Overlay */}
-                <div className="relative z-20 h-full flex items-center">
-                    <div className="max-w-7xl mx-auto px-8 w-full">
-                        <div className="max-w-2xl">
-                            {vehicles.map((vehicle, index) => (
-                                <div
-                                    key={index}
-                                    className={`transition-all duration-700 ${index === currentSlide
-                                        ? 'opacity-100 translate-x-0'
-                                        : 'opacity-0 -translate-x-12 absolute'
-                                        }`}
-                                >
-                                    <div className="inline-block px-4 py-1 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 rounded-full text-sm mb-6">
-                                        NUEVA COLECCIÓN 2026
+                    {/* Content Overlay */}
+                    <div className="relative z-20 h-full flex items-center">
+                        <div className="max-w-7xl mx-auto px-8 w-full">
+                            <div className="max-w-2xl">
+                                {vehicles.map((vehicle, index) => (
+                                    <div
+                                        key={index}
+                                        className={`transition-all duration-700 ${index === currentSlide
+                                            ? 'opacity-100 translate-x-0'
+                                            : 'opacity-0 -translate-x-12 absolute'
+                                            }`}
+                                    >
+                                        <div className="inline-block px-4 py-1 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 rounded-full text-sm mb-6">
+                                            NUEVA COLECCIÓN 2026
+                                        </div>
+                                        <h1 className="text-7xl font-light mb-4 tracking-tight text-white">
+                                            {vehicle.name}
+                                        </h1>
+                                        <p className="text-2xl text-zinc-200 dark:text-zinc-300 mb-6 font-light">
+                                            {vehicle.tagline}
+                                        </p>
+                                        <p className="text-lg text-zinc-300 dark:text-zinc-400 mb-8">{vehicle.specs}</p>
+                                        <button className="group px-8 py-4 bg-white text-black hover:bg-zinc-100 dark:bg-zinc-100 dark:hover:bg-white transition-all duration-300 flex items-center gap-3 font-medium">
+                                            DESCUBRIR MÁS
+                                            <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                        </button>
                                     </div>
-                                    <h1 className="text-7xl font-light mb-4 tracking-tight text-white">
-                                        {vehicle.name}
-                                    </h1>
-                                    <p className="text-2xl text-zinc-200 dark:text-zinc-300 mb-6 font-light">
-                                        {vehicle.tagline}
-                                    </p>
-                                    <p className="text-lg text-zinc-300 dark:text-zinc-400 mb-8">{vehicle.specs}</p>
-                                    <button className="group px-8 py-4 bg-white text-black hover:bg-zinc-100 dark:bg-zinc-100 dark:hover:bg-white transition-all duration-300 flex items-center gap-3 font-medium">
-                                        DESCUBRIR MÁS
-                                        <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                    </button>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Navigation Arrows */}
-                <button
-                    onClick={prevSlide}
-                    className="absolute left-8 top-1/2 -translate-y-1/2 z-30 p-3 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 hover:bg-white/20 dark:hover:bg-white/10 transition-all"
-                >
-                    <ChevronLeft className="w-6 h-6 text-white" />
-                </button>
-                <button
-                    onClick={nextSlide}
-                    className="absolute right-8 top-1/2 -translate-y-1/2 z-30 p-3 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 hover:bg-white/20 dark:hover:bg-white/10 transition-all"
-                >
-                    <ChevronRight className="w-6 h-6 text-white" />
-                </button>
+                    {/* Navigation Arrows */}
+                    <button
+                        onClick={prevSlide}
+                        className="absolute left-8 top-1/2 -translate-y-1/2 z-30 p-3 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 hover:bg-white/20 dark:hover:bg-white/10 transition-all"
+                    >
+                        <ChevronLeft className="w-6 h-6 text-white" />
+                    </button>
+                    <button
+                        onClick={nextSlide}
+                        className="absolute right-8 top-1/2 -translate-y-1/2 z-30 p-3 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 hover:bg-white/20 dark:hover:bg-white/10 transition-all"
+                    >
+                        <ChevronRight className="w-6 h-6 text-white" />
+                    </button>
 
-                {/* Slide Indicators */}
-                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex gap-3">
-                    {vehicles.map((_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => setCurrentSlide(index)}
-                            className={`h-1 transition-all duration-300 ${index === currentSlide ? 'w-12 bg-white' : 'w-8 bg-white/40'
-                                }`}
-                        />
-                    ))}
-                </div>
-            </section>
-
+                    {/* Slide Indicators */}
+                    <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+                        {vehicles.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setCurrentSlide(index)}
+                                className={`h-1 transition-all duration-300 ${index === currentSlide ? 'w-12 bg-white' : 'w-8 bg-white/40'
+                                    }`}
+                            />
+                        ))}
+                    </div>
+                </section>
+            </div>
             {/* Why Choose Us Section */}
             <section className="py-24 px-8 bg-white dark:bg-zinc-900 transition-colors duration-300">
                 <div className="max-w-7xl mx-auto">
@@ -238,6 +239,7 @@ export default function AutoDealershipHome() {
                     </div>
                 </div>
             </section>
-        </div>
+        </>
     )
+
 }

@@ -19,7 +19,7 @@ export default async function ModelDetail({ params }: Props) {
         <div className="min-h-screen bg-gray-50">
 
             {/* HERO */}
-            <section className="relative w-full h-[500px]">
+            <section className="relative w-full h-125">
                 <img
                     src={modelo.portada}
                     alt={modelo.nombre}                    

@@ -1,4 +1,4 @@
-import AutoDealershipHome from "@/components/home/Hero";
+import AutoDealershipHome from "@/src/components/home/Hero";
 import Image from "next/image";
 
 export default function Home() {
