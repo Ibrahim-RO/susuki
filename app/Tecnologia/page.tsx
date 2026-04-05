@@ -2,14 +2,14 @@ import React from "react";
 
 export default function Page() {
     return (
-        <div className="bg-white text-neutral-900">
+        <div className="">
 
             {/* ENCABEZADO */}
             <section className="max-w-7xl mx-auto px-6 py-16 space-y-6">
                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
                     Tecnología SUZUKI
                 </h2>
-                <p className="text-lg text-neutral-600 leading-relaxed">
+                <p className="text-lg text-neutral-600 dark:text-white leading-relaxed">
                     Todos los autos SUZUKI cuentan con la mejor tecnología y diversos sistemas de seguridad que protegen tanto a los ocupantes como a los peatones. Siéntete seguro manejando tu SUZUKI.
                 </p>
             </section>
@@ -38,7 +38,7 @@ export default function Page() {
                         </div>
 
                         <div>
-                            <p className="text-neutral-600 leading-relaxed text-lg">
+                            <p className="text-neutral-600 dark:text-white leading-relaxed text-lg">
                                 El sistema de inyección directa del motor Boosterjet logra una excelente eficiencia entre el consumo de combustible y menores emisiones contaminantes. Prioriza la eficiencia de combustible o el desempeño dinámico de acuerdo con la situación. Su diseño es ligero y compacto. Aumenta la potencia del motor. Mantiene el torque estable en todo momento. Mejora la eficiencia del combustible.
                             </p>
                         </div>
@@ -48,7 +48,7 @@ export default function Page() {
             </section>
 
             {/* SECCIÓN 2 */}
-            <section className="py-20 bg-neutral-50 border-t">
+            <section className="py-20 bg-neutral-50 dark:bg-neutral-900 border-t">
                 <div className="max-w-7xl mx-auto px-6 space-y-12">
 
                     <div className="space-y-3">
@@ -61,7 +61,7 @@ export default function Page() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
                         <div className="order-2 md:order-1">
-                            <p className="text-neutral-600 leading-relaxed text-lg">
+                            <p className="text-neutral-600 dark:text-white leading-relaxed text-lg">
                                 La nueva plataforma SUZUKI te brinda un curveo rápido y estable, mayor rapidez y facilidad de frenado, mejor eficiencia en el consumo de combustible, agilidad al manejo y una aceleración más enérgica.
                             </p>
                         </div>
@@ -102,7 +102,7 @@ export default function Page() {
                         </div>
 
                         <div>
-                            <p className="text-neutral-600 leading-relaxed text-lg">
+                            <p className="text-neutral-600 dark:text-white leading-relaxed text-lg">
                                 Volante y columna de dirección colapsables Pedal de freno colapsable Soportes de motor colapsables Cinturones de seguridad de 3 puntos Cabeceras con ajuste de altura Bolsas de aire y pretensores Zonas de deformación controlada adelante y atrás Zonas de distribución de impacto en la parte lateral Barras de protección en puertas
                             </p>
                         </div>
@@ -112,7 +112,7 @@ export default function Page() {
             </section>
 
             {/* SECCIÓN 4 */}
-            <section className="py-20 bg-neutral-50 border-t">
+            <section className="py-20 bg-neutral-50 dark:bg-neutral-900 border-t">
                 <div className="max-w-7xl mx-auto px-6 space-y-12">
 
                     <div className="space-y-3">
@@ -125,7 +125,7 @@ export default function Page() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
                         <div className="order-2 md:order-1">
-                            <p className="text-neutral-600 leading-relaxed text-lg">
+                            <p className="text-neutral-600 dark:text-white leading-relaxed text-lg">
                                 Mayor rigidez: Vehículo con menos ruido y vibraciones, más maniobrable y ágil en curvas. Mayor resistencia: Máxima protección para los pasajeros en caso de un imprevisto. Más ligera: Vehículo con mejor respuesta a la aceleración y aprovechamiento de combustible.
                             </p>
                         </div>
