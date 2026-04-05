@@ -13,6 +13,31 @@ const FILTERS = [
     "TIPO",
 ];
 
+type FilterKey =
+    | "DISTRIBUIDORA" | "MARCA" | "MODELO" | "PRECIO"
+    | "AÑO" | "CARROCERÍA" | "TRANSMISIÓN" | "TIPO";
+
+type ViewMode = "large" | "small" | "list";
+
+type SortKey = "" | "price_asc" | "price_desc" | "year" | "km";
+
+type TagType = "NUEVO" | "OFERTA" | "PREMIUM";
+
+interface Car {
+    id: number;
+    year: number;
+    brand: string;
+    model: string;
+    price: number;
+    oldPrice: number | null;
+    km: number;
+    transmission: string;
+    dealer: string;
+    city: string;
+    image: string;
+    tag: TagType | null;
+}
+
 const cars = [
     { id: 1, year: 2025, brand: "Suzuki", model: "Fronx Boostergreen", price: 390000, oldPrice: 399000, km: 18000, transmission: "Automática", dealer: "Suzuki Angelopolis", city: "PUEBLA", image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80", tag: "NUEVO" },
     { id: 2, year: 2022, brand: "Suzuki", model: "Ertiga XI7", price: 325000, oldPrice: null, km: 69000, transmission: "Automática", dealer: "Suzuki Angelopolis", city: "PUEBLA", image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80", tag: null },
@@ -30,11 +55,11 @@ const TAG_COLORS = {
     PREMIUM: "bg-amber-500 text-white",
 };
 
-function formatPrice(price) {
+function formatPrice(price: number) {
     return `$${price.toLocaleString("es-MX")}`;
 }
 
-function CarCardGrid({ car }) {
+function CarCardGrid({ car }: { car: Car }) {
     const discount = car.oldPrice
         ? Math.round((1 - car.price / car.oldPrice) * 100)
         : null;
@@ -90,7 +115,7 @@ function CarCardGrid({ car }) {
     );
 }
 
-function CarCardList({ car }) {
+function CarCardList({ car }: { car: Car }) {
     return (
         <div className="group bg-white rounded-2xl overflow-hidden cursor-pointer border border-gray-100 flex hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300">
             <div className="relative w-40 sm:w-52 shrink-0 overflow-hidden">
@@ -134,13 +159,18 @@ function CarCardList({ car }) {
     );
 }
 
+type GridMode = "large" | "small" | "list";
+type SortOption = "" | "price_asc" | "price_desc" | "year" | "km"
+
 export default function VehicleListingPage() {
-    const [openFilters, setOpenFilters] = useState({});
-    const [gridMode, setGridMode] = useState("large");
-    const [sortBy, setSortBy] = useState("");
+    // ✅ Tipado correcto: Partial<Record<FilterKey, boolean>>
+    const [openFilters, setOpenFilters] = useState<Partial<Record<FilterKey, boolean>>>({});
+    const [gridMode, setGridMode] = useState<GridMode>("large");
+    const [sortBy, setSortBy] = useState<SortOption>("");
     const [sidebarOpen, setSidebarOpen] = useState(true);
 
-    const toggleFilter = (f) =>
+    // ✅ f ahora tiene tipo FilterKey (inferido del array as const)
+    const toggleFilter = (f: FilterKey) =>
         setOpenFilters((prev) => ({ ...prev, [f]: !prev[f] }));
 
     const sortedCars = useMemo(() => {
@@ -164,19 +194,19 @@ export default function VehicleListingPage() {
                         {FILTERS.map((f) => (
                             <div key={f} className="px-6 py-4">
                                 <button
-                                    onClick={() => toggleFilter(f)}
+                                    onClick={() => toggleFilter(f as FilterKey)}
                                     className="w-full flex items-center justify-between group"
                                 >
                                     <span className="text-xs font-bold tracking-widest text-gray-800 group-hover:text-blue-600 transition-colors">
                                         {f}
                                     </span>
-                                    <span className={`text-gray-400 group-hover:text-blue-600 transition-all duration-300 ${openFilters[f] ? "rotate-45" : ""}`}>
+                                    <span className={`text-gray-400 group-hover:text-blue-600 transition-all duration-300 ${openFilters[f as FilterKey] ? "rotate-45" : ""}`}>
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                             <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                                         </svg>
                                     </span>
                                 </button>
-                                {openFilters[f] && (
+                                {openFilters[f as FilterKey] && (
                                     <div className="mt-3 space-y-2">
                                         {["Opción 1", "Opción 2", "Opción 3"].map((opt) => (
                                             <label key={opt} className="flex items-center gap-2 cursor-pointer group">
@@ -212,44 +242,45 @@ export default function VehicleListingPage() {
                             </div>
                             {/* Grid toggles */}
                             <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-xl p-1">
-                                {[
-                                    {
-                                        mode: "large",
-                                        icon: (
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <rect x="1" y="1" width="6" height="6" rx="1" fill="currentColor" />
-                                                <rect x="9" y="1" width="6" height="6" rx="1" fill="currentColor" />
-                                                <rect x="1" y="9" width="6" height="6" rx="1" fill="currentColor" />
-                                                <rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor" />
-                                            </svg>
-                                        ),
-                                    },
-                                    {
-                                        mode: "small",
-                                        icon: (
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                {[0, 5, 10].map((x) =>
-                                                    [0, 5, 10].map((y) => (
-                                                        <rect key={`${x}-${y}`} x={x + 1} y={y + 1} width="3" height="3" rx="0.5" fill="currentColor" />
-                                                    ))
-                                                )}
-                                            </svg>
-                                        ),
-                                    },
-                                    {
-                                        mode: "list",
-                                        icon: (
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M1 4h14M1 8h14M1 12h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                                            </svg>
-                                        ),
-                                    },
-                                ].map(({ mode, icon }) => (
+                                {(
+                                    [
+                                        {
+                                            mode: "large" as GridMode,
+                                            icon: (
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                    <rect x="1" y="1" width="6" height="6" rx="1" fill="currentColor" />
+                                                    <rect x="9" y="1" width="6" height="6" rx="1" fill="currentColor" />
+                                                    <rect x="1" y="9" width="6" height="6" rx="1" fill="currentColor" />
+                                                    <rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor" />
+                                                </svg>
+                                            ),
+                                        },
+                                        {
+                                            mode: "small" as GridMode,
+                                            icon: (
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                    {[0, 5, 10].map((x) =>
+                                                        [0, 5, 10].map((y) => (
+                                                            <rect key={`${x}-${y}`} x={x + 1} y={y + 1} width="3" height="3" rx="0.5" fill="currentColor" />
+                                                        ))
+                                                    )}
+                                                </svg>
+                                            ),
+                                        },
+                                        {
+                                            mode: "list" as GridMode,
+                                            icon: (
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                    <path d="M1 4h14M1 8h14M1 12h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                                </svg>
+                                            ),
+                                        },
+                                    ] satisfies { mode: GridMode; icon: React.ReactNode }[]
+                                ).map(({ mode, icon }) => (
                                     <button
                                         key={mode}
                                         onClick={() => setGridMode(mode)}
-                                        className={`p-2 rounded-lg transition-all ${gridMode === mode ? "bg-blue-600 text-white shadow-sm" : "text-gray-400 hover:text-gray-700"
-                                            }`}
+                                        className={`p-2 rounded-lg transition-all ${gridMode === mode ? "bg-blue-600 text-white shadow-sm" : "text-gray-400 hover:text-gray-700"}`}
                                     >
                                         {icon}
                                     </button>
@@ -262,7 +293,7 @@ export default function VehicleListingPage() {
                             <span className="text-sm text-gray-400 hidden sm:inline">Ordenar por</span>
                             <select
                                 value={sortBy}
-                                onChange={(e) => setSortBy(e.target.value)}
+                                onChange={(e) => setSortBy(e.target.value as SortOption)}
                                 className="text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none cursor-pointer"
                             >
                                 <option value="">Relevancia</option>
@@ -283,13 +314,13 @@ export default function VehicleListingPage() {
                                 }`}
                         >
                             {sortedCars.map((car) => (
-                                <CarCardGrid key={car.id} car={car} />
+                                <CarCardGrid key={car.id} car={car as Car} />
                             ))}
                         </div>
                     ) : (
                         <div className="flex flex-col gap-4">
                             {sortedCars.map((car) => (
-                                <CarCardList key={car.id} car={car} />
+                                <CarCardList key={car.id} car={car as Car } />
                             ))}
                         </div>
                     )}
